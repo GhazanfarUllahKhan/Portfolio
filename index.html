@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghazanfar Khan | .NET Developer</title>
+    <style>
+        :root {
+            --primary: #2563eb; /* Royal Blue */
+            --dark: #0f172a;    /* Slate Dark */
+            --light: #f8fafc;   /* Slate Light */
+            --text: #334155;    /* Slate Gray */
+            --bg: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            color: var(--text);
+            line-height: 1.6;
+            background-color: var(--bg);
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--dark);
+            color: white;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.9)), url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .hero h2 {
+            font-size: 1.5rem;
+            color: #94a3b8;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background: var(--primary);
+            color: white;
+            padding: 10px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #1d4ed8;
+        }
+
+        /* Sections General */
+        section {
+            padding: 4rem 10%;
+        }
+
+        h2.section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--dark);
+            font-size: 2rem;
+            position: relative;
+        }
+
+        h2.section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            margin: 10px auto;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-card {
+            background: var(--light);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .skill-card h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .tags span {
+            display: inline-block;
+            background: #e2e8f0;
+            padding: 5px 10px;
+            margin: 3px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        /* Experience */
+        .experience-item {
+            border-left: 4px solid var(--primary);
+            padding-left: 20px;
+            margin-bottom: 30px;
+        }
+
+        .experience-item h3 {
+            font-size: 1.5rem;
+            color: var(--dark);
+        }
+
+        .experience-item .company {
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .experience-item .date {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .experience-item ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        
+        .experience-item li {
+            margin-bottom: 8px;
+        }
+
+        /* Certifications */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+
+        .cert-card {
+            border: 1px solid #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .cert-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Contact */
+        .contact {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+        }
+
+        .contact p {
+            margin: 10px 0;
+            color: #cbd5e1;
+        }
+
+        .contact a {
+            color: white;
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #020617;
+            color: #64748b;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none; 
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">Ghazanfar Khan</div>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#certifications">Certifications</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <h1>Ghazanfar Khan</h1>
+        <h2>.NET Developer | Azure & AWS Certified</h2>
+        <p>Expert in ASP.NET Core, MVC, and Scalable System Design</p>
+        <br>
+        <a href="#contact" class="btn">Get in Touch</a>
+    </header>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title">Professional Summary</h2>
+        <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+            <p>
+                .NET Developer with 3 years of experience in designing, developing, and deploying web and enterprise
+                applications using ASP.NET Core, ASP.NET MVC, C#, and SQL Server. Expertise in Object-Oriented
+                Programming (OOP), REST API development, and Entity Framework. Skilled in scalable system design
+                and Agile delivery, with active certifications in cloud platforms (Azure & AWS).
+            </p>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" style="background-color: #f8fafc;">
+        <h2 class="section-title">Technical Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3>Languages</h3>
+                <div class="tags">
+                    <span>C#</span>
+                    <span>SQL</span>
+                    <span>HTML</span>
+                    <span>CSS</span>
+                    <span>.NET</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <h3>Frameworks</h3>
+                <div class="tags">
+                    <span>.NET Core</span>
+                    <span>ASP.NET MVC</span>
+                    <span>Entity Framework</span>
+                    <span>Web API</span>
+                    <span>REST API</span>
+                    <span>LINQ</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <h3>Tools & Cloud</h3>
+                <div class="tags">
+                    <span>Azure DevOps</span>
+                    <span>SSMS</span>
+                    <span>Visual Studio</span>
+                    <span>Git & GitHub</span>
+                    <span>GitHub Copilot</span>
+                    <span>Jira</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <h2 class="section-title">Experience</h2>
+        
+        <div class="experience-item">
+            <h3>.Net Developer</h3>
+            <p class="company">Tata Consultancy Services | Gurugram, India</p>
+            <p class="date">Nov 2022 – Present</p>
+            <ul>
+                <li>Developed and maintained ASP.NET MVC applications for a leading Banking, Financial Services, and Insurance (BFSI) client.</li>
+                <li>Enhanced ASP.NET application performance by <strong>15%</strong> through strategic refactoring and redundant code removal.</li>
+                <li>Performed database performance tuning in SSMS, reducing query response time by <strong>20%</strong>.</li>
+                <li>Developed stored procedures to automate recurring data processing tasks, cutting manual effort by <strong>5+ hours/month</strong>.</li>
+                <li>Collaborated with 4 cross-functional teams to implement responsive UIs, enhancing user experience by ~7%.</li>
+                <li>Resolved <strong>50+ technical issues</strong>, ensuring uninterrupted application functionality for 5,000+ internal users.</li>
+                <li>Promoted SOLID principles and system design best practices during code reviews.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" style="background-color: #f8fafc;">
+        <h2 class="section-title">Certifications</h2>
+        <div class="cert-grid">
+            <div class="cert-card">
+                <h4>Microsoft AZ-900</h4>
+                <p>Azure Fundamentals</p>
+            </div>
+            <div class="cert-card">
+                <h4>AWS Certified</h4>
+                <p>Cloud Practitioner</p>
+            </div>
+            <div class="cert-card">
+                <h4>GitHub Foundations</h4>
+                <p>Git & Version Control</p>
+            </div>
+            <div class="cert-card">
+                <h4>GitHub Copilot</h4>
+                <p>AI Programming</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <h2 class="section-title">Education</h2>
+        <div style="text-align: center;">
+            <h3>Bachelor of Technology</h3>
+            <p>Dr. A.P.J. Abdul Kalam Technical University</p>
+            <p class="date">2018 – 2022</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2 class="section-title" style="color: white;">Contact Me</h2>
+        <p>Email: <a href="mailto:khanghazanfar2001@gmail.com">khanghazanfar2001@gmail.com</a></p>
+        <p>Phone: +91 8218116336</p>
+        <p>LinkedIn: <a href="https://linkedin.com/in/ghazanfar-khan-dev" target="_blank">linkedin.com/in/ghazanfar-khan-dev</a></p>
+        <p>Location: Gurugram, India</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Ghazanfar Khan. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
