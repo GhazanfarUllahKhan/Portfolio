@@ -4,269 +4,141 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ghazanfar Khan | .NET Developer</title>
+    <!-- Google Fonts for Modern Look -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #2563eb; /* Royal Blue */
-            --dark: #0f172a;    /* Slate Dark */
-            --light: #f8fafc;   /* Slate Light */
-            --text: #334155;    /* Slate Gray */
-            --bg: #ffffff;
+            --primary: #3b82f6;
+            --secondary: #1e40af;
+            --bg: #f8fafc;
+            --text: #1e293b;
+            --card-bg: #ffffff;
+            --nav-bg: rgba(255, 255, 255, 0.85);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --transition: all 0.3s ease;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        /* Dark Mode Variables */
+        body.dark-mode {
+            --bg: #0f172a;
+            --text: #f1f5f9;
+            --card-bg: #1e293b;
+            --nav-bg: rgba(15, 23, 42, 0.9);
+            --primary: #60a5fa;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
         }
 
-        body {
-            color: var(--text);
-            line-height: 1.6;
-            background-color: var(--bg);
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        
+        body { background-color: var(--bg); color: var(--text); transition: var(--transition); line-height: 1.6; overflow-x: hidden; }
 
         /* Navigation */
         nav {
-            background: var(--dark);
-            color: white;
+            position: sticky; top: 0; z-index: 100;
+            background: var(--nav-bg); backdrop-filter: blur(10px);
             padding: 1rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid rgba(128, 128, 128, 0.1);
         }
+        nav .logo { font-size: 1.5rem; font-weight: 700; color: var(--primary); letter-spacing: -1px; }
+        nav ul { list-style: none; display: flex; gap: 2rem; align-items: center; }
+        nav a { text-decoration: none; color: var(--text); font-weight: 500; transition: var(--transition); }
+        nav a:hover { color: var(--primary); }
 
-        nav .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
+        /* Theme Toggle Button */
+        #theme-toggle {
+            background: none; border: 2px solid var(--text); color: var(--text);
+            padding: 5px 12px; border-radius: 20px; cursor: pointer; font-weight: bold;
+            transition: var(--transition); font-size: 0.8rem;
         }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 20px;
-        }
-
-        nav a {
-            color: #cbd5e1;
-            text-decoration: none;
-            transition: 0.3s;
-        }
-
-        nav a:hover {
-            color: white;
-        }
+        #theme-toggle:hover { background: var(--text); color: var(--bg); }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.9)), url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            height: 90vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; padding: 20px;
+            background: radial-gradient(circle at top right, var(--primary), transparent 40%),
+                        radial-gradient(circle at bottom left, var(--secondary), transparent 40%);
             background-size: cover;
-            background-position: center;
-            color: white;
-            height: 90vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 20px;
         }
-
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-        }
-
-        .hero h2 {
-            font-size: 1.5rem;
-            color: #94a3b8;
-            margin-bottom: 20px;
-        }
-
+        .hero h1 { font-size: 4rem; font-weight: 800; margin-bottom: 10px; letter-spacing: -2px; }
+        .hero .typing-text { font-size: 1.5rem; color: var(--primary); font-weight: 600; min-height: 1.6em; }
+        .hero p { max-width: 600px; margin: 20px auto; font-size: 1.1rem; opacity: 0.8; }
         .btn {
-            background: var(--primary);
-            color: white;
-            padding: 10px 25px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: 0.3s;
-            border: none;
-            cursor: pointer;
+            background: var(--primary); color: white; padding: 12px 30px; border-radius: 30px;
+            text-decoration: none; font-weight: 600; transition: var(--transition);
+            box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.4);
         }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 15px 20px -3px rgba(59, 130, 246, 0.6); }
 
-        .btn:hover {
-            background: #1d4ed8;
+        /* Sections */
+        section { padding: 5rem 10%; }
+        h2.section-title { font-size: 2.5rem; margin-bottom: 3rem; text-align: center; }
+        h2.section-title span { border-bottom: 4px solid var(--primary); }
+
+        /* Cards (Skills & Certs) */
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .card {
+            background: var(--card-bg); padding: 30px; border-radius: 16px;
+            box-shadow: var(--shadow); transition: var(--transition);
+            border: 1px solid rgba(128, 128, 128, 0.1);
         }
-
-        /* Sections General */
-        section {
-            padding: 4rem 10%;
-        }
-
-        h2.section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-            color: var(--dark);
-            font-size: 2rem;
-            position: relative;
-        }
-
-        h2.section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background: var(--primary);
-            margin: 10px auto;
-        }
-
-        /* Skills */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .skill-card {
-            background: var(--light);
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        }
-
-        .skill-card h3 {
-            color: var(--primary);
-            margin-bottom: 10px;
-        }
-
+        .card:hover { transform: translateY(-10px); border-color: var(--primary); }
         .tags span {
-            display: inline-block;
-            background: #e2e8f0;
-            padding: 5px 10px;
-            margin: 3px;
-            border-radius: 4px;
-            font-size: 0.9rem;
+            display: inline-block; background: rgba(59, 130, 246, 0.1); color: var(--primary);
+            padding: 5px 12px; border-radius: 20px; font-size: 0.85rem; margin: 5px 2px; font-weight: 600;
         }
 
         /* Experience */
-        .experience-item {
-            border-left: 4px solid var(--primary);
-            padding-left: 20px;
-            margin-bottom: 30px;
+        .timeline { border-left: 3px solid var(--primary); padding-left: 30px; margin-left: 20px; }
+        .exp-item { margin-bottom: 40px; position: relative; }
+        .exp-item::before {
+            content: ''; position: absolute; left: -38px; top: 5px; width: 16px; height: 16px;
+            background: var(--primary); border-radius: 50%; border: 3px solid var(--bg);
         }
+        .exp-item h3 { font-size: 1.5rem; }
+        .exp-item .role { color: var(--primary); font-weight: 600; margin-bottom: 5px; }
+        .exp-item .date { font-size: 0.9rem; opacity: 0.7; margin-bottom: 15px; display: block; }
 
-        .experience-item h3 {
-            font-size: 1.5rem;
-            color: var(--dark);
-        }
+        /* Animation Classes */
+        .hidden { opacity: 0; transform: translateY(50px); transition: all 1s ease; }
+        .show { opacity: 1; transform: translateY(0); }
 
-        .experience-item .company {
-            font-weight: bold;
-            color: var(--primary);
-        }
-
-        .experience-item .date {
-            color: #64748b;
-            font-size: 0.9rem;
-            margin-bottom: 10px;
-        }
-
-        .experience-item ul {
-            margin-left: 20px;
-            margin-top: 10px;
-        }
-        
-        .experience-item li {
-            margin-bottom: 8px;
-        }
-
-        /* Certifications */
-        .cert-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            text-align: center;
-        }
-
-        .cert-card {
-            border: 1px solid #e2e8f0;
-            padding: 20px;
-            border-radius: 8px;
-            transition: 0.3s;
-        }
-
-        .cert-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
-        }
-
-        /* Contact */
-        .contact {
-            background: var(--dark);
-            color: white;
-            text-align: center;
-        }
-
-        .contact p {
-            margin: 10px 0;
-            color: #cbd5e1;
-        }
-
-        .contact a {
-            color: white;
-            text-decoration: underline;
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: #020617;
-            color: #64748b;
-            font-size: 0.8rem;
-        }
+        /* Contact & Footer */
+        .contact { text-align: center; background: var(--card-bg); border-top: 1px solid rgba(128,128,128,0.1); }
+        .contact a { color: var(--primary); text-decoration: none; font-weight: bold; }
+        footer { text-align: center; padding: 20px; font-size: 0.9rem; opacity: 0.6; }
 
         @media (max-width: 768px) {
-            nav ul {
-                display: none; 
-            }
-            .hero h1 {
-                font-size: 2rem;
-            }
+            .hero h1 { font-size: 2.5rem; }
+            nav ul { display: none; } /* Simplified mobile view */
         }
     </style>
 </head>
 <body>
 
-    <!-- Navigation -->
     <nav>
-        <div class="logo">Ghazanfar Khan</div>
+        <div class="logo">GK.</div>
         <ul>
             <li><a href="#about">About</a></li>
             <li><a href="#skills">Skills</a></li>
             <li><a href="#experience">Experience</a></li>
-            <li><a href="#certifications">Certifications</a></li>
             <li><a href="#contact">Contact</a></li>
+            <li><button id="theme-toggle">Dark Mode</button></li>
         </ul>
     </nav>
 
-    <!-- Hero Section -->
     <header class="hero">
-        <h1>Ghazanfar Khan</h1>
-        <h2>.NET Developer | Azure & AWS Certified</h2>
-        <p>Expert in ASP.NET Core, MVC, and Scalable System Design</p>
+        <h1 class="hidden">Ghazanfar Khan</h1>
+        <div class="typing-text" id="typewriter"></div>
+        <p class="hidden">Expert in ASP.NET Core, MVC, and Scalable System Design</p>
         <br>
-        <a href="#contact" class="btn">Get in Touch</a>
+        <a href="#contact" class="btn hidden">View Resume</a>
     </header>
 
-    <!-- About Section -->
-    <section id="about">
-        <h2 class="section-title">Professional Summary</h2>
-        <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+    <section id="about" class="hidden">
+        <h2 class="section-title"><span>About Me</span></h2>
+        <div style="max-width: 800px; margin: 0 auto; text-align: center; font-size: 1.1rem;">
             <p>
                 .NET Developer with 3 years of experience in designing, developing, and deploying web and enterprise
                 applications using ASP.NET Core, ASP.NET MVC, C#, and SQL Server. Expertise in Object-Oriented
@@ -276,110 +148,137 @@
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" style="background-color: #f8fafc;">
-        <h2 class="section-title">Technical Skills</h2>
-        <div class="skills-grid">
-            <div class="skill-card">
+    <section id="skills" class="hidden">
+        <h2 class="section-title"><span>Tech Stack</span></h2>
+        <div class="grid-container">
+            <div class="card">
                 <h3>Languages</h3>
+                <br>
                 <div class="tags">
-                    <span>C#</span>
-                    <span>SQL</span>
-                    <span>HTML</span>
-                    <span>CSS</span>
-                    <span>.NET</span>
+                    <span>C#</span> <span>SQL</span> <span>HTML5</span> <span>CSS3</span> <span>JavaScript</span> <span>.NET</span>
                 </div>
             </div>
-            <div class="skill-card">
+            <div class="card">
                 <h3>Frameworks</h3>
+                <br>
                 <div class="tags">
-                    <span>.NET Core</span>
-                    <span>ASP.NET MVC</span>
-                    <span>Entity Framework</span>
-                    <span>Web API</span>
-                    <span>REST API</span>
-                    <span>LINQ</span>
+                    <span>.NET Core</span> <span>ASP.NET MVC</span> <span>Entity Framework</span> <span>Web API</span> <span>LINQ</span>
                 </div>
             </div>
-            <div class="skill-card">
-                <h3>Tools & Cloud</h3>
+            <div class="card">
+                <h3>Cloud & Tools</h3>
+                <br>
                 <div class="tags">
-                    <span>Azure DevOps</span>
-                    <span>SSMS</span>
-                    <span>Visual Studio</span>
-                    <span>Git & GitHub</span>
-                    <span>GitHub Copilot</span>
-                    <span>Jira</span>
+                    <span>Azure DevOps</span> <span>AWS</span> <span>SSMS</span> <span>Git/GitHub</span> <span>Jira</span> <span>Docker</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Experience Section -->
-    <section id="experience">
-        <h2 class="section-title">Experience</h2>
-        
-        <div class="experience-item">
-            <h3>.Net Developer</h3>
-            <p class="company">Tata Consultancy Services | Gurugram, India</p>
-            <p class="date">Nov 2022 – Present</p>
-            <ul>
-                <li>Developed and maintained ASP.NET MVC applications for a leading Banking, Financial Services, and Insurance (BFSI) client.</li>
-                <li>Enhanced ASP.NET application performance by <strong>15%</strong> through strategic refactoring and redundant code removal.</li>
-                <li>Performed database performance tuning in SSMS, reducing query response time by <strong>20%</strong>.</li>
-                <li>Developed stored procedures to automate recurring data processing tasks, cutting manual effort by <strong>5+ hours/month</strong>.</li>
-                <li>Collaborated with 4 cross-functional teams to implement responsive UIs, enhancing user experience by ~7%.</li>
-                <li>Resolved <strong>50+ technical issues</strong>, ensuring uninterrupted application functionality for 5,000+ internal users.</li>
-                <li>Promoted SOLID principles and system design best practices during code reviews.</li>
-            </ul>
+    <section id="experience" class="hidden">
+        <h2 class="section-title"><span>Experience</span></h2>
+        <div class="timeline">
+            <div class="exp-item">
+                <h3>Tata Consultancy Services</h3>
+                <div class="role">.NET Developer | Gurugram, India</div>
+                <span class="date">Nov 2022 – Present</span>
+                <ul>
+                    <li>Developed and maintained ASP.NET MVC applications for a leading BFSI client.</li>
+                    <li>Enhanced application performance by <strong>15%</strong> through refactoring.</li>
+                    <li>Reduced database query response time by <strong>20%</strong> via SSMS tuning.</li>
+                    <li>Automated data processing tasks using Stored Procedures, saving 5+ hours/month.</li>
+                    <li>Collaborated with cross-functional teams to improve UI/UX by 7%.</li>
+                </ul>
+            </div>
         </div>
     </section>
 
-    <!-- Certifications Section -->
-    <section id="certifications" style="background-color: #f8fafc;">
-        <h2 class="section-title">Certifications</h2>
-        <div class="cert-grid">
-            <div class="cert-card">
+    <section id="certifications" class="hidden">
+        <h2 class="section-title"><span>Certifications</span></h2>
+        <div class="grid-container">
+            <div class="card">
                 <h4>Microsoft AZ-900</h4>
                 <p>Azure Fundamentals</p>
             </div>
-            <div class="cert-card">
+            <div class="card">
                 <h4>AWS Certified</h4>
                 <p>Cloud Practitioner</p>
             </div>
-            <div class="cert-card">
+            <div class="card">
                 <h4>GitHub Foundations</h4>
-                <p>Git & Version Control</p>
-            </div>
-            <div class="cert-card">
-                <h4>GitHub Copilot</h4>
-                <p>AI Programming</p>
+                <p>Version Control</p>
             </div>
         </div>
     </section>
 
-    <!-- Education Section -->
-    <section id="education">
-        <h2 class="section-title">Education</h2>
-        <div style="text-align: center;">
-            <h3>Bachelor of Technology</h3>
-            <p>Dr. A.P.J. Abdul Kalam Technical University</p>
-            <p class="date">2018 – 2022</p>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <h2 class="section-title" style="color: white;">Contact Me</h2>
+    <section id="contact" class="contact hidden">
+        <h2 class="section-title"><span>Let's Connect</span></h2>
         <p>Email: <a href="mailto:khanghazanfar2001@gmail.com">khanghazanfar2001@gmail.com</a></p>
-        <p>Phone: +91 8218116336</p>
-        <p>LinkedIn: <a href="https://linkedin.com/in/ghazanfar-khan-dev" target="_blank">linkedin.com/in/ghazanfar-khan-dev</a></p>
-        <p>Location: Gurugram, India</p>
+        <p>LinkedIn: <a href="https://linkedin.com/in/ghazanfar-khan-dev" target="_blank">/in/ghazanfar-khan-dev</a></p>
+        <br>
+        <a href="mailto:khanghazanfar2001@gmail.com" class="btn">Send Email</a>
     </section>
 
     <footer>
-        <p>&copy; 2024 Ghazanfar Khan. All Rights Reserved.</p>
+        <p>&copy; 2024 Ghazanfar Khan. Built with HTML, CSS & JS.</p>
     </footer>
 
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // 1. Dark Mode Toggle
+        const toggleBtn = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        toggleBtn.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                toggleBtn.textContent = 'Light Mode';
+            } else {
+                toggleBtn.textContent = 'Dark Mode';
+            }
+        });
+
+        // 2. Scroll Reveal Animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        });
+
+        const hiddenElements = document.querySelectorAll('.hidden');
+        hiddenElements.forEach((el) => observer.observe(el));
+
+        // 3. Typewriter Effect
+        const textElement = document.getElementById('typewriter');
+        const texts = [".NET Developer", "Azure Certified", "AWS Certified", "System Designer"];
+        let count = 0;
+        let index = 0;
+        let currentText = "";
+        let letter = "";
+
+        (function type() {
+            if (count === texts.length) {
+                count = 0;
+            }
+            currentText = texts[count];
+            letter = currentText.slice(0, ++index);
+
+            textElement.textContent = letter;
+            
+            if (letter.length === currentText.length) {
+                setTimeout(() => {
+                    // Quick pause before deleting could go here, 
+                    // but for simplicity we just loop or clear
+                    count++;
+                    index = 0;
+                }, 2000);
+            }
+            
+            // Speed of typing
+            setTimeout(type, 150);
+        })();
+    </script>
 </body>
 </html>
